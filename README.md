@@ -89,3 +89,10 @@ pip install -r requirements.txt
 
 ```bash
 python utils/process_video.py
+
+
+# Предупреждение
+
+- Обязательно создать папку models и data с подпапками input_videos и output_videos
+- В папку models нужно положить собственный модель
+- В папки дата нужно положить входные данные
