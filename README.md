@@ -1,9 +1,54 @@
 # Football Analysis Project
 
-## Introduction
-The goal of this project is to detect and track players, referees, and footballs in a video using YOLO, one of the best AI object detection models available. We will also train the model to improve its performance. Additionally, we will assign players to teams based on the colors of their t-shirts using Kmeans for pixel segmentation and clustering. With this information, we can measure a team's ball acquisition percentage in a match. We will also use optical flow to measure camera movement between frames, enabling us to accurately measure a player's movement. Furthermore, we will implement perspective transformation to represent the scene's depth and perspective, allowing us to measure a player's movement in meters rather than pixels. Finally, we will calculate a player's speed and the distance covered. This project covers various concepts and addresses real-world problems, making it suitable for both beginners and experienced machine learning engineers.
+## Описание проекта
+Проект **Football Analysis** направлен на анализ футбольных матчей с использованием компьютерного зрения. Система автоматически обнаруживает и отслеживает игроков, мяч и арбитров на видео с применением модели YOLO (You Only Look Once) и алгоритмов трекинга (ByteTrack). Дополнительно реализована логика определения принадлежности игроков к командам с помощью кластеризации (KMeans) по цвету футболок, а также рассчитываются ключевые метрики матча:
+- **Владение мячом** – процент кадров, в которых каждая команда владеет мячом.
+- **Пройденное расстояние** – суммарное расстояние, пройденное игроками (с переводом в километры).
+- **Интенсивность матча** – отношение общего пройденного расстояния (в км) к длительности видео (в минутах), выраженное в км/мин.
+- **xG (Expected Goals)** – оценка качества ударов (опционально).
 
-![Screenshot](data/output_videos/screenshot.png)
+Проект включает веб-интерфейс на базе Streamlit, позволяющий:
+- Загружать видео для анализа;
+- Получать обработанное видео с аннотациями и статистикой;
+- Скачивать готовое видео.
+
+## Основные функции и модули
+- **Обнаружение объектов:**  
+  Использование модели YOLO для определения позиций игроков, мяча и арбитров.
+- **Отслеживание объектов:**  
+  Алгоритм ByteTrack для устойчивого трекинга объектов между кадрами.
+- **Определение принадлежности к командам:**  
+  Кластеризация по цвету футболок с использованием KMeans.
+- **Калибровка и трансформация:**  
+  Применение оптического потока и перспективного преобразования для получения «реальных» координат и расчёта перемещений в метрах.
+- **Расчёт метрик матча:**  
+  Вычисление владения мячом, пройденного расстояния, интенсивности матча (км/мин) и, опционально, xG.
+- **Веб-интерфейс:**  
+  Приложение на Streamlit для интерактивного анализа видео.
+
+## Структура проекта
+
+football_analysis/
+├── data/
+│ ├── input_videos/ # Входные видео 
+│ └── output_videos/ # Выходные видео и изображения 
+├── functions/
+│ ├── tracker.py # Модуль трекинга объектов 
+│ ├── camera_movement_estimator.py # Оценка движения камеры 
+│ ├── view_transformer.py # Перспективное преобразование 
+│ ├── speed_and_distance_estimator.py # Расчёт скорости и пройденного расстояния 
+│ ├── team_assigner.py # Определение принадлежности к командам (KMeans) 
+│ ├── player_ball_assigner.py # Определение владения мячом 
+│ └── xg_calculator.py # (Опционально) Расчёт xG 
+├── stubs/
+│ ├── track_stubs.pkl # Stub для треков 
+│ └── camera_movement_stub.pkl # Stub для движения камеры 
+├── utils/
+│ ├── video_utils.py # Чтение и сохранение видео 
+│ ├── bbox_utils.py # Функции для работы с bounding box 
+│ └── process_video.py # Основной пайплайн обработки видео и вычисления метрик 
+├── streamlit_app.py # Веб-интерфейс на базе Streamlit 
+└── README.md # Документация проекта
 
 ## Modules Used
 The following modules are used in this project:
@@ -13,12 +58,34 @@ The following modules are used in this project:
 - Perspective Transformation: Represent scene depth and perspective
 - Speed and distance calculation per player
 
-## Requirements
-To run this project, you need to have the following requirements installed:
+## Требования
+Чтобы запустить проект, необходимо установить:
 - Python 3.x
 - ultralytics
 - supervision
 - OpenCV
 - NumPy
-- Matplotlib
 - Pandas
+- scikit-learn
+- Streamlit
+
+Установку зависимостей можно выполнить, создав файл `requirements.txt` и запустив:
+```bash
+pip install -r requirements.txt
+
+
+## Как запустить проект
+
+### Запуск через Streamlit
+
+1. Откройте терминал в корневой папке проекта.
+2. Выполните следующую команду:
+   ```bash
+   streamlit run streamlit_app.py
+
+## Запуск из командной строки
+
+### Для запуска основного пайплайна обработки видео выполните:
+
+```bash
+python utils/process_video.py
