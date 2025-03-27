@@ -29,26 +29,26 @@
 ## Структура проекта
 
 football_analysis/
-├── data/
-│ ├── input_videos/ # Входные видео 
-│ └── output_videos/ # Выходные видео и изображения 
-├── functions/
-│ ├── tracker.py # Модуль трекинга объектов 
-│ ├── camera_movement_estimator.py # Оценка движения камеры 
-│ ├── view_transformer.py # Перспективное преобразование 
-│ ├── speed_and_distance_estimator.py # Расчёт скорости и пройденного расстояния 
-│ ├── team_assigner.py # Определение принадлежности к командам (KMeans) 
-│ ├── player_ball_assigner.py # Определение владения мячом 
-│ └── xg_calculator.py # (Опционально) Расчёт xG 
-├── stubs/
-│ ├── track_stubs.pkl # Stub для треков 
-│ └── camera_movement_stub.pkl # Stub для движения камеры 
-├── utils/
-│ ├── video_utils.py # Чтение и сохранение видео 
-│ ├── bbox_utils.py # Функции для работы с bounding box 
-│ └── process_video.py # Основной пайплайн обработки видео и вычисления метрик 
-├── streamlit_app.py # Веб-интерфейс на базе Streamlit 
-└── README.md # Документация проекта
+- data/
+  - input_videos/ # Входные видео
+  - output_videos/ # Выходные видео и изображения 
+- functions/
+  - tracker.py # Модуль трекинга объектов
+  - camera_movement_estimator.py # Оценка движения камеры
+  - view_transformer.py # Перспективное преобразование
+  - speed_and_distance_estimator.py # Расчёт скорости и пройденного расстояния
+  - team_assigner.py # Определение принадлежности к командам (KMeans)
+  - player_ball_assigner.py # Определение владения мячом
+  - xg_calculator.py # (Опционально) Расчёт xG
+- stubs/
+  - track_stubs.pkl # Stub для треков
+  - camera_movement_stub.pkl # Stub для движения камеры 
+- utils/
+  - video_utils.py # Чтение и сохранение видео
+  - bbox_utils.py # Функции для работы с bounding box
+  - process_video.py # Основной пайплайн обработки видео и вычисления метрик
+- streamlit_app.py # Веб-интерфейс на базе Streamlit 
+- README.md # Документация проекта
 
 ## Modules Used
 The following modules are used in this project:
