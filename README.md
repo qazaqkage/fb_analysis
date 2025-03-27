@@ -72,7 +72,7 @@ The following modules are used in this project:
 Установку зависимостей можно выполнить, создав файл `requirements.txt` и запустив:
 ```bash
 pip install -r requirements.txt
-
+```
 
 ## Как запустить проект
 
@@ -82,7 +82,7 @@ pip install -r requirements.txt
 2. Выполните следующую команду:
    ```bash
    streamlit run streamlit_app.py
-
+    ```
 ## Запуск из командной строки
 
 ### Для запуска основного пайплайна обработки видео выполните:
