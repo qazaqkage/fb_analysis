@@ -90,6 +90,7 @@ pip install -r requirements.txt
 ```bash
 python utils/process_video.py
 
+```
 
 # Предупреждение
 
